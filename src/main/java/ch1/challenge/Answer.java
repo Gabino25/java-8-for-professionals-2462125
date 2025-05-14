@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 class Answer {
@@ -23,8 +25,19 @@ class Answer {
 class OrderUtil {
     // Method to filter orders after a given date
     public static ArrayList<Order> getOrdersAfterDate(List<Order> orders, LocalDate afterDate) {
-        // Your code goes here
-        return null;
+        Predicate<Order> predicate = new Predicate<Order>() {
+
+            @Override
+            public boolean test(Order t) {
+                return afterDate.isBefore(t.getDate());
+            }
+        };
+
+
+
+        List<Order> retval = orders.stream().filter(predicate).collect(Collectors.toList());
+
+        return ( ArrayList<Order>)retval;
     }
 }
 
