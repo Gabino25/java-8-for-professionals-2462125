@@ -33,12 +33,20 @@ public class DatesAndTimes {
         System.out.println(ldt3);
 
         //monthday
+        MonthDay monthDay1 = MonthDay.now();
         MonthDay monthDay = MonthDay.of(7, 8);
         LocalDate newLocalDate = monthDay.atYear(2022);
 
+        System.out.println("monthDay1:"+monthDay1);
+        System.out.println("monthDay:"+monthDay);
+        System.out.println("newLocalDate:"+newLocalDate);
         //yearmonth
 
         YearMonth yearMonth = YearMonth.now();
         LocalDate yearMonthLocalDate = yearMonth.atDay(8);
+
+        System.out.println("yearMonth:"+yearMonth);
+        System.out.println("yearMonthLocalDate:"+yearMonthLocalDate);
+
     }
 }
