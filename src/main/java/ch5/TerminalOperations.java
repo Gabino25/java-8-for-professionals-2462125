@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.IntBinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,15 +32,26 @@ public class TerminalOperations {
 
         // create stream using generate method
         Stream<Integer> generateStream = Stream.generate(() -> 5);
+        //Stream.generate(() -> 5).forEach(p->System.out.println(p));
         //forever stream
         //Optional<Integer> minGenerate = Stream.generate(() -> 5).min((a, b) -> a.compareTo(b));
 
         // create stream using iterate method
         Stream<Integer> iterateStream = Stream.iterate(1, x -> x + 2);
+        //Stream.iterate(1, x -> x + 2).forEach(p->System.out.println(p));
+
+        IntBinaryOperator intBinaryOperator = new IntBinaryOperator(){
+            @Override
+            public int applyAsInt(int left, int right) {
+                return left+right;
+            }
+        };
 
         int[] ints = { 1, 2, 3, 4, 5 };
-        int total = Arrays.stream(ints).reduce(0, (x, y) -> x + y);
-        System.out.println(total);
+        int total = Arrays.stream(ints).reduce(30, (x, y) -> x + y);
+        int total2 = Arrays.stream(ints).reduce(30, intBinaryOperator);
+        System.out.println("total:"+total);
+        System.out.println("total2:"+total);
 
     }
 }
